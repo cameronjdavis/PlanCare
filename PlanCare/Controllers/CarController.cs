@@ -15,7 +15,7 @@ namespace PlanCare.Controllers
             string json = r.ReadToEnd();
             var cars = JsonConvert.DeserializeObject<List<Car>>(json) ?? new List<Car>();
             if (make.Length > 0) {
-                cars = cars.Where(c => c.Make.ToLower().Equals(make)).ToList();
+                cars = cars.Where(c => c.Make.ToLower().Equals(make.ToLower())).ToList();
             }
             return Ok(cars);
         }
