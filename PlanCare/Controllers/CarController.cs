@@ -11,13 +11,26 @@ namespace PlanCare.Controllers
     {
         [HttpGet]
         public async Task<ActionResult<List<Car>>> GetCars([FromQuery(Name = "make")] string make = "") {
-            using StreamReader r = new StreamReader("cars.json");
-            string json = r.ReadToEnd();
-            var cars = JsonConvert.DeserializeObject<List<Car>>(json) ?? new List<Car>();
+            var cars = ReadCars();
             if (make.Length > 0) {
                 cars = cars.Where(c => c.Make.ToLower().Equals(make.ToLower())).ToList();
             }
             return Ok(cars);
+        }
+
+        [HttpGet("{rego}")]
+        public async Task<ActionResult<DateOnly>> GetRegoDate([FromRoute(Name = "rego")] string rego)
+        {
+            var cars = ReadCars();
+            Car? car = cars.Where(c => c.Registration == rego).FirstOrDefault();
+            return car == null ? NotFound() : Ok(car.RegisteredTo);
+        }
+
+        private static List<Car> ReadCars()
+        {
+            using StreamReader r = new StreamReader("cars.json");
+            string json = r.ReadToEnd();
+            return JsonConvert.DeserializeObject<List<Car>>(json) ?? [];
         }
     }
 }

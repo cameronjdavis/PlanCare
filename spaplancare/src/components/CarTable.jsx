@@ -16,6 +16,8 @@ function CarTable() {
                 <tr>
                     <td>ID</td>
                     <td>Make</td>
+                    <td>Rego</td>
+                    <td>Registered To</td>
                 </tr>
             </thead>
             <tbody>
@@ -24,6 +26,8 @@ function CarTable() {
                         return <tr key={i}>
                             <td>{car.id}</td>
                             <td>{car.make}</td>
+                            <td>{car.registration}</td>
+                            <td>{car.registeredTo}</td>
                         </tr>
                     })
                 }
