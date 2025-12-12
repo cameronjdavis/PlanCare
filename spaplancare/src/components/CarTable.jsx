@@ -11,7 +11,7 @@ function CarTable() {
     }, [])
 
     return (
-        <table>
+        <table class="fl-table">
             <thead>
                 <tr>
                     <td>ID</td>
@@ -26,7 +26,7 @@ function CarTable() {
                         return <tr key={i}>
                             <td>{car.id}</td>
                             <td>{car.make}</td>
-                            <td>{car.registration}</td>
+                            <td class="rego">{car.registration}</td>
                             <td>{car.registeredTo}</td>
                         </tr>
                     })

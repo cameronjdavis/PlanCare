@@ -40,3 +40,23 @@
 .read-the-docs {
   color: #888;
 }
+
+table {
+    border: solid gray 1px;
+    padding: 5px;
+}
+td {
+    padding: 10px;
+}
+tbody tr:nth-child(odd) {
+    background-color: darkcyan;
+    color: #fff;
+}
+td.rego {
+    font-family: monospace;
+    font-weight: bold;
+    background-color: white;
+    color: blue;
+    border-top: solid 5px blue;
+    padding: 0px;
+}

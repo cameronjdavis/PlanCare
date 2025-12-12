@@ -19,7 +19,7 @@ namespace PlanCare.Controllers
         }
 
         [HttpGet("{rego}")]
-        public async Task<ActionResult<DateOnly>> GetRegoDate([FromRoute(Name = "rego")] string rego)
+        public async Task<ActionResult<DateTime>> GetRegoDate([FromRoute(Name = "rego")] string rego)
         {
             var cars = ReadCars();
             Car? car = cars.Where(c => c.Registration == rego).FirstOrDefault();
