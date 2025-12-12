@@ -9,5 +9,12 @@ export default defineConfig({
         allowedHosts: [
             'spaplancare.localhost',
         ],
+        proxy: {
+            '/api': {
+                target: 'http://localhost:5141',
+                changeOrigin: true,
+                //rewrite: (path) => path.replace(/^\/api/, ''),
+            },
+        },
     }
 })

@@ -5,7 +5,7 @@ using PlanCare.Model;
 
 namespace PlanCare.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class CarController : ControllerBase
     {

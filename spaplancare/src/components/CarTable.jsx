@@ -5,7 +5,7 @@ function CarTable() {
     const [data, setData] = useState([
     ]);
     useEffect(() => {
-        axios.get('http://spaplancare.localhost:5141/Car')
+        axios.get('/api/Car')
             .then(res => setData(res.data))
             .catch(err => console.error(err));
     }, [])
