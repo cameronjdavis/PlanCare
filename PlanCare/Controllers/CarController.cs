@@ -23,7 +23,7 @@ namespace PlanCare.Controllers
         {
             var cars = ReadCars();
             Car? car = cars.Where(c => c.Registration == rego).FirstOrDefault();
-            return car == null ? NotFound() : Ok(car.RegisteredTo);
+            return car == null ? NotFound() : Ok(car.RegisteredUntil);
         }
 
         private static List<Car> ReadCars()

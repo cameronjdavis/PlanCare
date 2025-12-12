@@ -3,36 +3,36 @@
     "Id": 1,
     "Make": "Toyota",
     "Registration": "1DQU289",
-    "RegisteredTo": "2024-12-21T23:59Z"
+    "RegisteredUntil": "2024-12-21T23:59Z"
   },
   {
     "Id": 2,
     "Make": "Honda",
     "Registration": "1ABC123",
-    "RegisteredTo": "2025-12-31T23:59Z"
+    "RegisteredUntil": "2025-12-31T23:59Z"
   },
   {
     "Id": 3,
     "Make": "Ferreri",
     "Registration": "DEF454",
-    "RegisteredTo": "2024-12-21T23:59Z"
+    "RegisteredUntil": "2024-12-21T23:59Z"
   },
   {
     "Id": 4,
     "Make": "Honda",
     "Registration": "1AJS333",
-    "RegisteredTo": "2025-12-31T23:59Z"
+    "RegisteredUntil": "2025-12-31T23:59Z"
   },
   {
     "Id": 5,
     "Make": "Toyota",
     "Registration": "1IAK654",
-    "RegisteredTo": "2024-12-21T23:59Z"
+    "RegisteredUntil": "2024-12-21T23:59Z"
   },
   {
     "Id": 6,
     "Make": "MG",
     "Registration": "1AII993",
-    "RegisteredTo": "2025-12-31T23:59Z"
+    "RegisteredUntil": "2025-12-31T23:59Z"
   }
 ]
