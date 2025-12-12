@@ -1,3 +1,7 @@
 <Solution>
   <Project Path="PlanCare/PlanCare.csproj" />
+  <Project Path="SpaPlanCare/spaplancare.esproj">
+    <Build />
+    <Deploy />
+  </Project>
 </Solution>

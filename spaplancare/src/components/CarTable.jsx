@@ -1,0 +1,35 @@
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+
+function CarTable() {
+    const [data, setData] = useState([
+    ]);
+    useEffect(() => {
+        axios.get('http://spaplancare.localhost:5141/Car')
+            .then(res => setData(res.data))
+            .catch(err => console.error(err));
+    }, [])
+
+    return (
+        <table>
+            <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>Make</td>
+                </tr>
+            </thead>
+            <tbody>
+                {
+                    data.map((car, i) => {
+                        return <tr key={i}>
+                            <td>{car.id}</td>
+                            <td>{car.make}</td>
+                        </tr>
+                    })
+                }
+            </tbody>
+        </table>
+    )
+}
+
+export default CarTable;
