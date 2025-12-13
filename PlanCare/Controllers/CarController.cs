@@ -17,13 +17,5 @@ namespace PlanCare.Controllers
             }
             return Ok(cars);
         }
-
-        [HttpGet("{rego}")]
-        public async Task<ActionResult<DateTime>> GetRegoDate([FromRoute(Name = "rego")] string rego)
-        {
-            var cars = Car.Cars;
-            Car? car = cars.Where(c => c.Registration == rego).FirstOrDefault();
-            return car == null ? NotFound() : Ok(car.RegisteredUntil);
-        }
     }
 }

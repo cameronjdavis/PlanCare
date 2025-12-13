@@ -1,6 +1,8 @@
 ﻿
 using Microsoft.AspNetCore.SignalR;
+using Newtonsoft.Json;
 using PlanCare.Hubs;
+using PlanCare.Model;
 
 namespace PlanCare
 {
@@ -12,8 +14,7 @@ namespace PlanCare
         {
             while (!stoppingToken.IsCancellationRequested)
             {
-                await regoHub.Clients.All.SendAsync("ReceiveMessage", "user2", "rego something klnam", cancellationToken: stoppingToken);
-
+                await regoHub.Clients.All.SendAsync("ReceiveMessage", "user2", JsonConvert.SerializeObject(Car.Cars), cancellationToken: stoppingToken);
                 await Task.Delay(2000, stoppingToken);
             }
         }
