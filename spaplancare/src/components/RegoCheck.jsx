@@ -3,7 +3,7 @@ import { useParams } from "react-router";
 import * as signalR from '@microsoft/signalr';
 function RegoCheck() {
     let rego = useParams().rego;
-    const [cars, setCars] = useState([]);
+    const [car, setCar] = useState();
     useEffect(() => {
         const connection = new signalR.HubConnectionBuilder()
             .withUrl("http://localhost:5141/regoHub?rego=" + rego, {
@@ -16,7 +16,8 @@ function RegoCheck() {
             .catch(err => console.log('Error while starting connection: ' + err));
 
         connection.on("ReceiveMessage", function (user, message) {
-            setCars(JSON.parse(message));
+            const cars = JSON.parse(message);
+            setCar(cars.find(c => c.Registration == rego));
         });
     }, []);
 
@@ -30,8 +31,8 @@ function RegoCheck() {
             </thead>
             <tbody>
                 <tr>
-                    <td className="rego">{ rego }</td>
-                    <td>{ cars.find(c => c.Registration == rego)?.RegistrationStatus }</td>
+                    <td className="rego">{rego}</td>
+                    <td className={car?.RegistrationStatus}>{car?.RegistrationStatus}</td>
                 </tr>
             </tbody>
         </table>
