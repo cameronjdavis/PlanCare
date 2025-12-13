@@ -11,7 +11,7 @@ namespace PlanCare.Controllers
     {
         [HttpGet]
         public async Task<ActionResult<List<Car>>> GetCars([FromQuery(Name = "make")] string make = "") {
-            var cars = ReadCars();
+            var cars = Car.Cars;
             if (make.Length > 0) {
                 cars = cars.Where(c => c.Make.ToLower().Equals(make.ToLower())).ToList();
             }
@@ -21,16 +21,9 @@ namespace PlanCare.Controllers
         [HttpGet("{rego}")]
         public async Task<ActionResult<DateTime>> GetRegoDate([FromRoute(Name = "rego")] string rego)
         {
-            var cars = ReadCars();
+            var cars = Car.Cars;
             Car? car = cars.Where(c => c.Registration == rego).FirstOrDefault();
             return car == null ? NotFound() : Ok(car.RegisteredUntil);
-        }
-
-        private static List<Car> ReadCars()
-        {
-            using StreamReader r = new StreamReader("cars.json");
-            string json = r.ReadToEnd();
-            return JsonConvert.DeserializeObject<List<Car>>(json) ?? [];
         }
     }
 }

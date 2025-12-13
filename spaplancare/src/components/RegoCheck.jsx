@@ -1,39 +1,40 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-
-function CarTable() {
-    const [data, setData] = useState([
-    ]);
+import React, { useEffect } from 'react';
+import { useParams } from "react-router";
+import * as signalR from '@microsoft/signalr';
+function RegoCheck() {
+    let rego = useParams().rego;
     useEffect(() => {
-        axios.get('/api/Car')
-            .then(res => setData(res.data))
-            .catch(err => console.error(err));
-    }, [])
+        const connection = new signalR.HubConnectionBuilder()
+            .withUrl("http://localhost:5141/regoHub?rego=" + rego, {
+                skipNegotiation: true,
+                transport: signalR.HttpTransportType.WebSockets
+            })
+            .build();
+
+        connection.start()
+            .catch(err => console.log('Error while starting connection: ' + err));
+
+        connection.on("ReceiveMessage", function (user, message) {
+            console.log(user, message);
+        });
+    }, []);
 
     return (
-            <table>
-                <thead>
-                    <tr>
-                        <td>ID</td>
-                        <td>Make</td>
-                        <td>Rego</td>
-                        <td>Registered Until</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        data.map((car, i) => {
-                            return <tr key={i}>
-                                <td>{car.id}</td>
-                                <td>{car.make}</td>
-                                <td className="rego">{car.registration}</td>
-                                <td>{car.registeredUntil}</td>
-                            </tr>
-                        })
-                    }
-                </tbody>
-            </table>
-    )
+        <table>
+            <thead>
+                <tr>
+                    <td>Rego</td>
+                    <td>Rego Status</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td className="rego">{ rego }</td>
+                    <td>TODO</td>
+                </tr>
+            </tbody>
+        </table>
+    );
 }
 
-export default CarTable;
+export default RegoCheck;

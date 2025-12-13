@@ -17,8 +17,7 @@ td {
 }
 
 tbody tr:nth-child(odd) {
-    background-color: darkcyan;
-    color: #fff;
+    background-color: aliceblue;
 }
 
 td.rego {

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router';
 
 function CarTable() {
     const [data, setData] = useState([
@@ -18,6 +19,7 @@ function CarTable() {
                     <td>Make</td>
                     <td>Rego</td>
                     <td>Registered Until</td>
+                    <td></td>
                 </tr>
             </thead>
             <tbody>
@@ -28,6 +30,9 @@ function CarTable() {
                             <td>{car.make}</td>
                             <td className="rego">{car.registration}</td>
                             <td>{car.registeredUntil}</td>
+                            <td><Link to={{
+                                pathname: "/registration/" + car.registration
+                            }}>See Rego Status</Link></td>
                         </tr>
                     })
                 }
