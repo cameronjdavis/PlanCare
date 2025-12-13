@@ -19,7 +19,7 @@ namespace PlanCare
                     Registration = c.Registration,
                     RegistrationStatus = c.RegistrationStatus
                 });
-                await regoHub.Clients.All.SendAsync("ReceiveMessage", statuses, cancellationToken: stoppingToken);
+                await regoHub.Clients.All.SendAsync("ReceiveMessage", JsonConvert.SerializeObject(statuses), cancellationToken: stoppingToken);
                 await Task.Delay(2000, stoppingToken);
             }
         }
