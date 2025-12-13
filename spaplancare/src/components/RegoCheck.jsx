@@ -6,7 +6,7 @@ function RegoCheck() {
     const [car, setCar] = useState();
     useEffect(() => {
         const connection = new signalR.HubConnectionBuilder()
-            .withUrl("http://localhost:5141/regoHub?rego=" + rego, {
+            .withUrl("http://localhost:5141/regoHub", {
                 skipNegotiation: true,
                 transport: signalR.HttpTransportType.WebSockets
             })
@@ -15,11 +15,11 @@ function RegoCheck() {
         connection.start()
             .catch(err => console.log('Error while starting connection: ' + err));
 
-        connection.on("ReceiveMessage", function (user, message) {
+        connection.on("ReceiveMessage", function (message) {
             const cars = JSON.parse(message);
             setCar(cars.find(c => c.Registration == rego));
         });
-    }, []);
+    }, [rego]);
 
     return (
         <table>
@@ -32,7 +32,7 @@ function RegoCheck() {
             <tbody>
                 <tr>
                     <td className="rego">{rego}</td>
-                    <td className={car?.RegistrationStatus}>{car?.RegistrationStatus}</td>
+                    <td className={car?.RegistrationStatus}>{car?.RegistrationStatus ?? 'No matching record'}</td>
                 </tr>
             </tbody>
         </table>

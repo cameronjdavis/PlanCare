@@ -14,7 +14,7 @@ namespace PlanCare
         {
             while (!stoppingToken.IsCancellationRequested)
             {
-                await regoHub.Clients.All.SendAsync("ReceiveMessage", "user2", JsonConvert.SerializeObject(Car.Cars), cancellationToken: stoppingToken);
+                await regoHub.Clients.All.SendAsync("ReceiveMessage", JsonConvert.SerializeObject(Car.Cars), cancellationToken: stoppingToken);
                 await Task.Delay(2000, stoppingToken);
             }
         }
