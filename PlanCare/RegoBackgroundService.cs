@@ -14,9 +14,20 @@ namespace PlanCare
         {
             while (!stoppingToken.IsCancellationRequested)
             {
-                await regoHub.Clients.All.SendAsync("ReceiveMessage", JsonConvert.SerializeObject(Car.Cars), cancellationToken: stoppingToken);
+                var statuses = Car.Cars.Select(c => new RegoStatus
+                {
+                    Registration = c.Registration,
+                    RegistrationStatus = c.RegistrationStatus
+                });
+                await regoHub.Clients.All.SendAsync("ReceiveMessage", statuses, cancellationToken: stoppingToken);
                 await Task.Delay(2000, stoppingToken);
             }
+        }
+
+        public class RegoStatus
+        {
+            public String Registration { get; set; } = String.Empty;
+            public String RegistrationStatus { get; set; } = String.Empty;
         }
     }
 }
