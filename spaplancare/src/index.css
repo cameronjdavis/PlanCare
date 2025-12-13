@@ -31,7 +31,3 @@ td.rego {
     border-right: solid black 1px;
     border-bottom: solid black 1px;
 }
-
-a.active::before {
-    content: "> ";
-}

@@ -7,7 +7,6 @@ import RegoCheck from './components/RegoCheck';
 createRoot(document.getElementById('root')).render(
     <BrowserRouter>
         <p><NavLink to="/">Cars in a table</NavLink></p>
-        <p><NavLink to="/registration">Rego Check</NavLink></p>
         <Routes>
             <Route path="/" element={<CarTable />} />
             <Route path="/registration/:rego" element={<RegoCheck />} />
