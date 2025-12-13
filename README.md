@@ -8,5 +8,5 @@ There are two projects in this solution.
 ## Table of cars with search by make
 ![Table of Cars](./cars-table.png)
 
-# Live registration status via SignalR
+## Live registration status via SignalR
 ![Rego Check via SignalR](./rego-check.png)
