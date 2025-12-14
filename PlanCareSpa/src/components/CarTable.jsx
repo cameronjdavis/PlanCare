@@ -3,25 +3,19 @@ import axios from 'axios';
 import { Link } from 'react-router';
 
 function CarTable() {
-    const [data, setData] = useState([]);
+    const [cars, setCars] = useState([]);
     const [searchText, setSearchText] = useState('');
     useEffect(() => {
-        axios.get('/api/Car')
-            .then(res => setData(res.data))
+        const query = searchText?.length > 0 ? '?make=' + searchText : '';
+        axios.get('/api/Car' + query)
+            .then(res => setCars(res.data))
             .catch(err => console.error(err));
-    }, [])
-
-    function handleSearch() {
-        axios.get('/api/Car?make=' + searchText)
-            .then(res => setData(res.data))
-            .catch(err => console.error(err));
-    }
+    }, [searchText]);
 
     return (
         <div>
             <p>
                 <input type="text" placeholder="Toyota" value={searchText} onInput={e => setSearchText(e.target.value)}></input>
-                <button onClick={handleSearch}>Search By Make</button>
             </p>
             <table>
                 <thead>
@@ -35,7 +29,7 @@ function CarTable() {
                 </thead>
                 <tbody>
                     {
-                        data.map((car, i) => {
+                        cars.map((car, i) => {
                             return <tr key={i}>
                                 <td>{car.id}</td>
                                 <td>{car.make}</td>
