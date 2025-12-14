@@ -3,7 +3,7 @@
     <File Path="README.md" />
   </Folder>
   <Project Path="PlanCare/PlanCare.csproj" />
-  <Project Path="SpaPlanCare/spaplancare.esproj">
+  <Project Path="PlanCareSpa/PlanCareSpa.esproj">
     <Build />
     <Deploy />
   </Project>
