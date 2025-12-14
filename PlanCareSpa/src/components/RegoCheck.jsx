@@ -32,7 +32,7 @@ function RegoCheck() {
             <tbody>
                 <tr>
                     <td className="rego">{rego}</td>
-                    <td className={car?.RegistrationStatus}>{car?.RegistrationStatus ?? 'No matching record'}</td>
+                    <td className={car?.RegistrationStatus ?? ''}>{car?.RegistrationStatus ?? 'No matching record'}</td>
                 </tr>
             </tbody>
         </table>
