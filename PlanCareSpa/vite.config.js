@@ -14,6 +14,11 @@ export default defineConfig({
                 target: 'http://localhost:5141',
                 changeOrigin: true,
             },
+            '/regoHub': {
+                target: 'http://localhost:5141',
+                changeOrigin: true,
+                ws: true,
+            },
         },
     }
 })

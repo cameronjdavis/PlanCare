@@ -6,7 +6,7 @@ function RegoCheck() {
     const [car, setCar] = useState();
     useEffect(() => {
         const connection = new signalR.HubConnectionBuilder()
-            .withUrl("http://localhost:5141/regoHub", {
+            .withUrl("/regoHub", {
                 skipNegotiation: true,
                 transport: signalR.HttpTransportType.WebSockets
             })
